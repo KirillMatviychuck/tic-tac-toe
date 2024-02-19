@@ -1,0 +1,24 @@
+@import '../../scss//mixins.scss';
+
+.cross {
+    @include alignCenter;
+    position: relative;
+    height: 100px;
+    width: 100px;
+
+    .firstLine {
+        position: absolute;
+        height: 100px;
+        width: 7px;
+        background-color: cyan;
+        transform: rotate(45deg);
+    }
+
+    .secondLine {
+        position: absolute;
+        height: 100px;
+        width: 7px;
+        background-color: cyan;
+        transform: rotate(-45deg);
+    }
+}

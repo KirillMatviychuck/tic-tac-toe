@@ -1,0 +1,16 @@
+.gameInfo {
+    width: 33%;
+    align-self: flex-start;
+    justify-self: unset;
+
+    .resetBtn {
+        outline: none;
+        width: 120px;
+        height: 40px;
+        color: black;
+        font-weight: 900;
+        outline: none;
+        border: none;
+        background-color: cyan;
+    }
+}

@@ -1,0 +1,6 @@
+@import './scss//mixins.scss';
+
+.app {
+    @include alignCenter;
+    height: 100vh;
+}

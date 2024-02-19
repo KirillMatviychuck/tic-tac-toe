@@ -1,0 +1,39 @@
+@import '../../scss/mixins.scss';
+
+.tableGrid {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    height: 600px;
+    width: 600px;
+
+    .cell {
+        @include alignCenter;
+        box-sizing: border-box;
+        height: 200px;
+        width: 200px;
+        border: 5px solid cyan;
+        box-sizing: border-box;
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+            border-top: none;
+        }
+
+        &:nth-child(3n + 1) {
+            border-left: none;
+        }
+
+        &:nth-child(3n + 3) {
+            border-right: none;
+        }
+
+        &:nth-child(7),
+        &:nth-child(8),
+        &:nth-child(9) {
+            border-bottom: none;
+        }
+
+    }
+}
