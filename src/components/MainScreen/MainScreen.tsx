@@ -1,12 +1,13 @@
 import { FC, MouseEvent } from 'react';
-import { GameTable } from '../GameTable/GameTable';
-import style from './MainScreen.module.scss';
 import { mainStateType } from '../../App';
+import { GameTable } from '../GameTable/GameTable';
+import { ModalWinnerScreen } from '../ModalWinnerScreen/ModalWinnerScreen';
 
-export const MainScreen: FC<Props> = ({ gameState, clickHandler }) => {
+export const MainScreen: FC<Props> = ({ gameState, isModalOpen, clickHandler, resetGame }) => {
     return (
-        <div className={style.mainScreen}>
+        <div>
             <GameTable gameState={gameState} clickHandler={clickHandler} />
+            <ModalWinnerScreen isModalOpen={isModalOpen} resetGame={resetGame} />
         </div>
     )
 }
@@ -14,4 +15,6 @@ export const MainScreen: FC<Props> = ({ gameState, clickHandler }) => {
 type Props = {
     gameState: mainStateType[]
     clickHandler: (e: MouseEvent, id: number) => void
+    isModalOpen: boolean
+    resetGame: () => void
 }

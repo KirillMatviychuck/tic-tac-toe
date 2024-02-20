@@ -1,6 +1,5 @@
-import { useState, MouseEvent } from 'react';
+import { MouseEvent, useState } from 'react';
 import styles from './App.module.scss';
-import { GameInfo } from './components/GameInfo/GameInfo';
 import { MainScreen } from './components/MainScreen/MainScreen';
 import { checkWinner } from './utils/checkWinner';
 
@@ -16,6 +15,7 @@ function App() {
     { cellID: 7, value: 'none' },
     { cellID: 8, value: 'none' },
   ])
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const clickHandler = (e: MouseEvent, id: number) => {
     e.preventDefault();
@@ -30,17 +30,19 @@ function App() {
   const resetGame = () => {
     setState(state.map(item => {
       return { ...item, value: 'none' }
-    }))
+    }));
+    setIsModalOpen(false);
   }
   const winner = checkWinner(state)
 
-  if (winner === 'circle' || winner === 'cross') return <div>Winner is {winner}</div>
-
+  if (winner === 'circle' || winner === 'cross' && !isModalOpen) setIsModalOpen(true)
 
   return (
     <div className={styles.app}>
-      <GameInfo resetGame={resetGame} />
-      <MainScreen gameState={state} clickHandler={clickHandler} />
+      <MainScreen gameState={state}
+        clickHandler={clickHandler}
+        isModalOpen={isModalOpen}
+        resetGame={resetGame} />
     </div>
   )
 }
