@@ -4,6 +4,7 @@ import { MainScreen } from './components/MainScreen/MainScreen';
 import { checkWinner } from './utils/checkWinner';
 
 function App() {
+
   const [state, setState] = useState<mainStateType[]>([
     { cellID: 0, value: 'none' },
     { cellID: 1, value: 'none' },
@@ -35,7 +36,8 @@ function App() {
   }
   const winner = checkWinner(state)
 
-  if (winner === 'circle' || winner === 'cross' && !isModalOpen) setIsModalOpen(true)
+  if (winner === 'cross' && !isModalOpen) setIsModalOpen(true)
+  if (winner === 'circle' && !isModalOpen) setIsModalOpen(true)
 
   return (
     <div className={styles.app}>
