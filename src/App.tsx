@@ -2,6 +2,8 @@ import { MouseEvent, useState } from 'react';
 import styles from './App.module.scss';
 import { MainScreen } from './components/MainScreen/MainScreen';
 import { checkWinner } from './utils/checkWinner';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { GameMenu } from './components/GameMenu/GameMenu';
 
 function App() {
 
@@ -41,10 +43,14 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <MainScreen gameState={state}
-        clickHandler={clickHandler}
-        isModalOpen={isModalOpen}
-        resetGame={resetGame} />
+      <Routes>
+        <Route path='/' element={<Navigate to='game-board' />} />
+        <Route path='game-board' element={<MainScreen gameState={state}
+          clickHandler={clickHandler}
+          isModalOpen={isModalOpen}
+          resetGame={resetGame} />} />
+        <Route path='/game-menu' element={<GameMenu />} />
+      </Routes>
     </div>
   )
 }

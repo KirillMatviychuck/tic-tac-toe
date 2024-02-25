@@ -1,0 +1,106 @@
+.gameMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 600px;
+
+
+    .title {
+        text-align: center;
+        font-family: "Permanent Marker", cursive;
+        font-weight: 400;
+        font-style: normal;
+
+        span {
+            color: chocolate;
+        }
+    }
+
+    .selectMode {
+        position: relative;
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+
+        .vsCompBlock {
+            height: 400px;
+            width: 185px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+
+            &:hover {
+                box-shadow: 0px 0px 81.88px 10.12px rgba(204, 204, 223, 0.71);
+            }
+
+            span {
+                display: block;
+                text-align: center;
+                font-family: "Permanent Marker", cursive;
+                font-weight: 900;
+                font-style: normal;
+                font-size: 1.4em;
+                color: chocolate;
+            }
+
+            img {
+                position: absolute;
+                left: 50px;
+                opacity: 0.5;
+                height: 400px;
+                width: 185px;
+                border-radius: 10px;
+
+            }
+        }
+
+        .oneOnOneBlock {
+            height: 400px;
+            width: 185px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+
+            &:hover {
+                box-shadow: 0px 0px 81.88px 10.12px rgba(204, 204, 223, 0.71);
+            }
+
+            img {
+                position: absolute;
+                right: 50px;
+                opacity: 0.5;
+                height: 400px;
+                width: 185px;
+                border-radius: 10px;
+            }
+
+            span {
+                display: block;
+                text-align: center;
+                font-family: "Permanent Marker", cursive;
+                font-weight: 900;
+                font-style: normal;
+                font-size: 1.4em;
+                color: chocolate;
+            }
+
+        }
+    }
+
+    .startBtn {
+        height: 40px;
+        width: 100px;
+        border: none;
+        background: chocolate;
+        color: #fffffe;
+        font-weight: 800;
+        letter-spacing: 1px;
+        border-radius: 10px;
+    }
+}

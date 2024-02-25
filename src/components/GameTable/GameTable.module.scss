@@ -4,15 +4,15 @@
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
-    height: 600px;
-    width: 600px;
+    height: 411px;
+    width: 411px;
 
     .cell {
         @include alignCenter;
         box-sizing: border-box;
-        height: 200px;
-        width: 200px;
-        border: 5px solid cyan;
+        height: 137px;
+        width: 137px;
+        border: 5px solid #fffffe;
         box-sizing: border-box;
 
         &:nth-child(1),

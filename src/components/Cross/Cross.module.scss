@@ -3,22 +3,22 @@
 .cross {
     @include alignCenter;
     position: relative;
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
 
     .firstLine {
         position: absolute;
-        height: 100px;
+        height: 80px;
         width: 7px;
-        background-color: cyan;
+        background-color: #fffffe;
         transform: rotate(45deg);
     }
 
     .secondLine {
         position: absolute;
-        height: 100px;
+        height: 80px;
         width: 7px;
-        background-color: cyan;
+        background-color: #fffffe;
         transform: rotate(-45deg);
     }
 }
