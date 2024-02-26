@@ -24,7 +24,8 @@
         justify-content: space-around;
         align-items: center;
 
-        .vsCompBlock {
+        .gameModeBlock {
+            position: relative;
             height: 400px;
             width: 185px;
             display: flex;
@@ -37,6 +38,14 @@
                 box-shadow: 0px 0px 81.88px 10.12px rgba(204, 204, 223, 0.71);
             }
 
+            img {
+                position: absolute;
+                opacity: 0.5;
+                height: 400px;
+                width: 185px;
+                border-radius: 10px;
+            }
+
             span {
                 display: block;
                 text-align: center;
@@ -47,49 +56,10 @@
                 color: chocolate;
             }
 
-            img {
-                position: absolute;
-                left: 50px;
-                opacity: 0.5;
-                height: 400px;
-                width: 185px;
-                border-radius: 10px;
-
-            }
         }
 
-        .oneOnOneBlock {
-            height: 400px;
-            width: 185px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-
-            &:hover {
-                box-shadow: 0px 0px 81.88px 10.12px rgba(204, 204, 223, 0.71);
-            }
-
-            img {
-                position: absolute;
-                right: 50px;
-                opacity: 0.5;
-                height: 400px;
-                width: 185px;
-                border-radius: 10px;
-            }
-
-            span {
-                display: block;
-                text-align: center;
-                font-family: "Permanent Marker", cursive;
-                font-weight: 900;
-                font-style: normal;
-                font-size: 1.4em;
-                color: chocolate;
-            }
-
+        .activeGameModeBlock {
+            box-shadow: 0px 0px 81.88px 10.12px rgba(204, 204, 223, 0.71);
         }
     }
 

@@ -4,6 +4,8 @@ import { MainScreen } from './components/MainScreen/MainScreen';
 import { checkWinner } from './utils/checkWinner';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { GameMenu } from './components/GameMenu/GameMenu';
+import vsComp from './assets/game-menu/vs-computer.jpg';
+import oneOnOne from './assets/game-menu/one-on-one.jpg';
 
 function App() {
 
@@ -19,6 +21,9 @@ function App() {
     { cellID: 8, value: 'none' },
   ])
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeGameMode, setActiveGameMode] = useState<null | number>(null)
+  const gameModes = [{ mode: 'Play vs comp', image: vsComp }, { mode: 'Play vs friend', image: oneOnOne }]
+  const changeModeHandler = (modeIndex: number) => setActiveGameMode(modeIndex)
 
   const clickHandler = (e: MouseEvent, id: number) => {
     e.preventDefault();
@@ -49,7 +54,9 @@ function App() {
           clickHandler={clickHandler}
           isModalOpen={isModalOpen}
           resetGame={resetGame} />} />
-        <Route path='/game-menu' element={<GameMenu />} />
+        <Route path='/game-menu' element={<GameMenu changeModeHandler={changeModeHandler}
+          activeGameMode={activeGameMode}
+          gameModes={gameModes} />} />
       </Routes>
     </div>
   )

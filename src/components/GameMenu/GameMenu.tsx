@@ -1,8 +1,10 @@
+import { FC } from 'react';
 import style from './GameMenu.module.scss';
-import oneOnOne from '../../assets/game-menu/one-on-one.jpg';
-import vsComp from '../../assets/game-menu/vs-computer.jpg';
+import { useNavigate } from 'react-router-dom';
 
-export const GameMenu = () => {
+export const GameMenu: FC<Props> = ({ activeGameMode, changeModeHandler, gameModes }) => {
+    const navigate = useNavigate();
+    const onClickHandler = () => navigate('/')
     return (
         <main className={style.gameMenu}>
             <h1 className={style.title}>
@@ -10,24 +12,24 @@ export const GameMenu = () => {
                 select game mode:
             </h1>
             <div className={style.selectMode}>
-                <div className={style.vsCompBlock}>
-                    <div>
-                        <span>Play</span>
-                        <span>vs</span>
-                        <span>computer</span>
-                    </div>
-                    <img src={vsComp} alt="play one on one" />
-                </div>
-                <div className={style.oneOnOneBlock}>
-                    <div>
-                        <span>Play</span>
-                        <span>vs</span>
-                        <span>friend</span>
-                    </div>
-                    <img src={oneOnOne} alt="play one on one" />
-                </div>
+                {gameModes.map((gameMode, index) => {
+                    return (
+                        <div key={index}
+                            className={activeGameMode === index ? `${style.gameModeBlock} ${style.activeGameModeBlock}` : style.gameModeBlock}
+                            onClick={() => changeModeHandler(index)}>
+                            <span>{gameMode.mode}</span>
+                            <img src={gameMode.image} alt={gameMode.mode} />
+                        </div>
+                    )
+                })}
             </div>
-            <button className={style.startBtn}>START</button>
+            <button className={style.startBtn} onClick={onClickHandler}>START</button>
         </main>
     )
+}
+
+type Props = {
+    activeGameMode: null | number
+    changeModeHandler: (index: number) => void
+    gameModes: Array<{ mode: string, image: string }>
 }
