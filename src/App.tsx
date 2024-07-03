@@ -20,14 +20,15 @@ function App() {
     { cellID: 7, value: 'none' },
     { cellID: 8, value: 'none' },
   ])
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playerTurn, setPlayerTurn] = useState(true);
   const [activeGameMode, setActiveGameMode] = useState<null | number>(null)
   const gameModes = [{ id: 0, mode: 'Play vs friend', image: oneOnOne }, { id: 1, mode: 'Play vs comp', image: vsComp }]
+
   useEffect(() => {
   }, [state])
   const changeModeHandler = (modeIndex: number) => setActiveGameMode(modeIndex)
-
 
   const clickHandler = (e: MouseEvent, id: number) => {
     // One on One game mode
@@ -79,6 +80,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Navigate to='game-board' />} />
         <Route path='game-board' element={<MainScreen gameState={state}
+          winner={winner}
           clickHandler={playerTurn ? clickHandler : () => { }}
           isModalOpen={isModalOpen}
           resetGame={resetGame}
