@@ -20,10 +20,8 @@ function App() {
     { cellID: 7, value: 'none' },
     { cellID: 8, value: 'none' },
   ])
-  //@ts-ignore
-  window.state = state
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [playerTurn, setPlayerTurn] = useState(true);
   const [activeGameMode, setActiveGameMode] = useState<null | number>(null)
   const gameModes = [{ id: 0, mode: 'Play vs friend', image: oneOnOne }, { id: 1, mode: 'Play vs comp', image: vsComp }]
   useEffect(() => {
@@ -45,6 +43,7 @@ function App() {
     // VS Computer game mode
 
     if (activeGameMode === 1) {
+      setPlayerTurn(false)
       if (e.type === 'click') {
         setState(state.map(item => item.cellID === id && item.value === 'none' ? { ...item, value: 'cross' } : item))
         setTimeout(() => {
@@ -58,6 +57,8 @@ function App() {
             if (item.cellID === id && item.value !== 'circle') return { ...item, value: 'cross' }
             return item
           }))
+          setPlayerTurn(true)
+
         }, 500)
       }
     }
@@ -78,7 +79,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Navigate to='game-board' />} />
         <Route path='game-board' element={<MainScreen gameState={state}
-          clickHandler={clickHandler}
+          clickHandler={playerTurn ? clickHandler : () => { }}
           isModalOpen={isModalOpen}
           resetGame={resetGame}
         />} />
