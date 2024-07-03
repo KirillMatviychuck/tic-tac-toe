@@ -12,7 +12,7 @@ export const ModalWinnerScreen: FC<Props> = ({ isModalOpen, resetGame }) => {
                         <div className={style.modalContent}>
                             <h2 className={style.title}>Winner is O congratulations</h2>
                             <p className={style.text}>if you want start new game press the button below</p>
-                            <button onClick={resetGame} className={style.modalBtn}>
+                            <button onClick={resetGame} className={style.commonBtn}>
                                 Start new game
                             </button>
                         </div>

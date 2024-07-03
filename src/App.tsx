@@ -1,11 +1,11 @@
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import styles from './App.module.scss';
+import oneOnOne from './assets/game-menu/one-on-one.jpg';
+import vsComp from './assets/game-menu/vs-computer.jpg';
+import { GameMenu } from './components/GameMenu/GameMenu';
 import { MainScreen } from './components/MainScreen/MainScreen';
 import { checkWinner } from './utils/checkWinner';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { GameMenu } from './components/GameMenu/GameMenu';
-import vsComp from './assets/game-menu/vs-computer.jpg';
-import oneOnOne from './assets/game-menu/one-on-one.jpg';
 
 function App() {
 
@@ -20,21 +20,48 @@ function App() {
     { cellID: 7, value: 'none' },
     { cellID: 8, value: 'none' },
   ])
+  //@ts-ignore
+  window.state = state
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeGameMode, setActiveGameMode] = useState<null | number>(null)
-  const gameModes = [{ mode: 'Play vs comp', image: vsComp }, { mode: 'Play vs friend', image: oneOnOne }]
+  const gameModes = [{ id: 0, mode: 'Play vs friend', image: oneOnOne }, { id: 1, mode: 'Play vs comp', image: vsComp }]
+  useEffect(() => {
+  }, [state])
   const changeModeHandler = (modeIndex: number) => setActiveGameMode(modeIndex)
 
+
   const clickHandler = (e: MouseEvent, id: number) => {
-    e.preventDefault();
-    if (e.type === 'click') {
-      setState(state.map(item => item.cellID === id && item.value === 'none' ? { ...item, value: 'cross' } : item))
+    // One on One game mode
+    if (activeGameMode === 0) {
+      e.preventDefault();
+      if (e.type === 'click') {
+        setState(state.map(item => item.cellID === id && item.value === 'none' ? { ...item, value: 'cross' } : item))
+      }
+      if (e.type === 'contextmenu') {
+        setState(state.map(item => item.cellID === id && item.value === 'none' ? { ...item, value: 'circle' } : item))
+      }
     }
-    if (e.type === 'contextmenu') {
-      setState(state.map(item => item.cellID === id && item.value === 'none' ? { ...item, value: 'circle' } : item))
+    // VS Computer game mode
+
+    if (activeGameMode === 1) {
+      if (e.type === 'click') {
+        setState(state.map(item => item.cellID === id && item.value === 'none' ? { ...item, value: 'cross' } : item))
+        setTimeout(() => {
+          let randomIndex: number;
+          for (let i = 0; i < 1000; i++) {
+            randomIndex = Math.floor(Math.random() * 9)
+            if (state[randomIndex].value === 'none' && randomIndex !== id) break
+          }
+          setState(state.map(item => {
+            if (item.cellID === randomIndex) return { ...item, value: 'circle' }
+            if (item.cellID === id && item.value !== 'circle') return { ...item, value: 'cross' }
+            return item
+          }))
+        }, 500)
+      }
     }
   }
-
   const resetGame = () => {
     setState(state.map(item => {
       return { ...item, value: 'none' }
@@ -53,7 +80,8 @@ function App() {
         <Route path='game-board' element={<MainScreen gameState={state}
           clickHandler={clickHandler}
           isModalOpen={isModalOpen}
-          resetGame={resetGame} />} />
+          resetGame={resetGame}
+        />} />
         <Route path='/game-menu' element={<GameMenu changeModeHandler={changeModeHandler}
           activeGameMode={activeGameMode}
           gameModes={gameModes} />} />
@@ -65,5 +93,6 @@ export type mainStateType = {
   cellID: number
   value: string
 }
+
 
 export default App

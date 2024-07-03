@@ -1,4 +1,4 @@
-@import '../../scss//mixins.scss';
+@import '../../scss/mixins.scss';
 
 .overlay {
     position: fixed;
@@ -37,15 +37,19 @@
                 font-size: 1.2em;
             }
 
-            .modalBtn {
-                width: 150px;
-                height: 40px;
-                color: black;
-                font-size: 0.9em;
-                font-weight: 900;
-                background-color: cyan;
+            .commonBtn {
                 border: none;
+                outline: none;
+                font-family: "Permanent Marker", cursive;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 1.2em;
+                background-color: chocolate;
+                padding: 10px;
+                min-height: 40px;
+                min-width: 120px;
                 border-radius: 10px;
+                cursor: pointer;
             }
         }
     }

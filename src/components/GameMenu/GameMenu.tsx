@@ -1,10 +1,13 @@
 import { FC } from 'react';
-import style from './GameMenu.module.scss';
 import { useNavigate } from 'react-router-dom';
+import style from './GameMenu.module.scss';
 
 export const GameMenu: FC<Props> = ({ activeGameMode, changeModeHandler, gameModes }) => {
-    const navigate = useNavigate();
-    const onClickHandler = () => navigate('/')
+    const navigate = useNavigate()
+    const onClickHandler = () => {
+        navigate('/')
+    }
+
     return (
         <main className={style.gameMenu}>
             <h1 className={style.title}>
@@ -23,7 +26,7 @@ export const GameMenu: FC<Props> = ({ activeGameMode, changeModeHandler, gameMod
                     )
                 })}
             </div>
-            <button className={style.startBtn} onClick={onClickHandler}>START</button>
+            <button onClick={onClickHandler} className={style.commonBtn}>START</button>
         </main>
     )
 }
@@ -31,5 +34,5 @@ export const GameMenu: FC<Props> = ({ activeGameMode, changeModeHandler, gameMod
 type Props = {
     activeGameMode: null | number
     changeModeHandler: (index: number) => void
-    gameModes: Array<{ mode: string, image: string }>
+    gameModes: Array<{ id: number, mode: string, image: string }>
 }

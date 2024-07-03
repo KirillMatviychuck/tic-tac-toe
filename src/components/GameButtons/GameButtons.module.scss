@@ -1,0 +1,22 @@
+.gameButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 350px;
+
+    .commonBtn {
+        border: none;
+        outline: none;
+        font-family: "Permanent Marker", cursive;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1.2em;
+        background-color: chocolate;
+        padding: 10px;
+        min-height: 40px;
+        min-width: 120px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+}
