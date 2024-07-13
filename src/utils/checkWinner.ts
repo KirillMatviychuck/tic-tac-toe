@@ -8,7 +8,6 @@ export function checkWinner(gameTable: mainStateType[]) {
         if (gameTable[combination[0]].value === 'circle' && gameTable[combination[1]].value === 'circle' && gameTable[combination[2]].value === 'circle') roundWinner = 'circle'
         if (gameTable[combination[0]].value === 'cross' && gameTable[combination[1]].value === 'cross' && gameTable[combination[2]].value === 'cross') roundWinner = 'cross'
     })
-
     return roundWinner
 }
 

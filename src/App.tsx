@@ -21,16 +21,18 @@ function App() {
     { cellID: 8, value: 'none' },
   ])
 
+  const [countDraw, setCountDraw] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playerTurn, setPlayerTurn] = useState(true);
   const [activeGameMode, setActiveGameMode] = useState<null | number>(null)
   const gameModes = [{ id: 0, mode: 'Play vs friend', image: oneOnOne }, { id: 1, mode: 'Play vs comp', image: vsComp }]
-
   useEffect(() => {
   }, [state])
   const changeModeHandler = (modeIndex: number) => setActiveGameMode(modeIndex)
+  console.log('count draw is :' + countDraw)
 
   const clickHandler = (e: MouseEvent, id: number) => {
+
     // One on One game mode
     if (activeGameMode === 0) {
       e.preventDefault();
@@ -40,9 +42,10 @@ function App() {
       if (e.type === 'contextmenu') {
         setState(state.map(item => item.cellID === id && item.value === 'none' ? { ...item, value: 'circle' } : item))
       }
+      setCountDraw(prevValue => prevValue + 1)
     }
-    // VS Computer game mode
 
+    // VS Computer game mode
     if (activeGameMode === 1) {
       setPlayerTurn(false)
       if (e.type === 'click') {
@@ -62,8 +65,11 @@ function App() {
 
         }, 500)
       }
+      setCountDraw(prevValue => prevValue + 2)
     }
+
   }
+  console.log('count draw after click is :' + countDraw)
   const resetGame = () => {
     setState(state.map(item => {
       return { ...item, value: 'none' }
@@ -74,11 +80,14 @@ function App() {
 
   if (winner === 'cross' && !isModalOpen) setIsModalOpen(true)
   if (winner === 'circle' && !isModalOpen) setIsModalOpen(true)
-
+  if (countDraw === 9 || countDraw === 10) {
+    setIsModalOpen(true)
+    setCountDraw(0)
+  }
   return (
     <div className={styles.app}>
       <Routes>
-        <Route path='/tic-tac-toe' element={<Navigate to='/tic-tac-toe/game-board' />} />
+        <Route path='/tic-tac-toe' element={<Navigate to='/tic-tac-toe/game-menu' />} />
         <Route path='/tic-tac-toe/game-board' element={<MainScreen gameState={state}
           winner={winner}
           clickHandler={playerTurn ? clickHandler : () => { }}
