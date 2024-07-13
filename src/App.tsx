@@ -78,14 +78,14 @@ function App() {
   return (
     <div className={styles.app}>
       <Routes>
-        <Route path='/' element={<Navigate to='game-board' />} />
-        <Route path='game-board' element={<MainScreen gameState={state}
+        <Route path='/tic-tac-toe' element={<Navigate to='/tic-tac-toe/game-board' />} />
+        <Route path='/tic-tac-toe/game-board' element={<MainScreen gameState={state}
           winner={winner}
           clickHandler={playerTurn ? clickHandler : () => { }}
           isModalOpen={isModalOpen}
           resetGame={resetGame}
         />} />
-        <Route path='/game-menu' element={<GameMenu changeModeHandler={changeModeHandler}
+        <Route path='/tic-tac-toe/game-menu' element={<GameMenu changeModeHandler={changeModeHandler}
           activeGameMode={activeGameMode}
           gameModes={gameModes} />} />
       </Routes>

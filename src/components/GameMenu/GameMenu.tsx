@@ -5,7 +5,7 @@ import style from './GameMenu.module.scss';
 export const GameMenu: FC<Props> = ({ activeGameMode, changeModeHandler, gameModes }) => {
     const navigate = useNavigate()
     const onClickHandler = () => {
-        navigate('/')
+        navigate('/tic-tac-toe')
     }
 
     return (
