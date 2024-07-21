@@ -26,10 +26,11 @@ function App() {
   const [playerTurn, setPlayerTurn] = useState(true);
   const [activeGameMode, setActiveGameMode] = useState<null | number>(null)
   const gameModes = [{ id: 0, mode: 'Play vs friend', image: oneOnOne }, { id: 1, mode: 'Play vs comp', image: vsComp }]
+
   useEffect(() => {
   }, [state])
   const changeModeHandler = (modeIndex: number) => setActiveGameMode(modeIndex)
-  console.log('count draw is :' + countDraw)
+
 
   const clickHandler = (e: MouseEvent, id: number) => {
 
@@ -51,6 +52,8 @@ function App() {
       if (e.type === 'click') {
         setState(state.map(item => item.cellID === id && item.value === 'none' ? { ...item, value: 'cross' } : item))
         setTimeout(() => {
+
+
           let randomIndex: number;
           for (let i = 0; i < 1000; i++) {
             randomIndex = Math.floor(Math.random() * 9)
@@ -65,17 +68,19 @@ function App() {
 
         }, 500)
       }
+
       setCountDraw(prevValue => prevValue + 2)
     }
 
   }
-  console.log('count draw after click is :' + countDraw)
+
   const resetGame = () => {
     setState(state.map(item => {
       return { ...item, value: 'none' }
     }));
     setIsModalOpen(false);
   }
+
   const winner = checkWinner(state)
 
   if (winner === 'cross' && !isModalOpen) {
