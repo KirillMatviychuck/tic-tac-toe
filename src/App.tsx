@@ -78,8 +78,15 @@ function App() {
   }
   const winner = checkWinner(state)
 
-  if (winner === 'cross' && !isModalOpen) setIsModalOpen(true)
-  if (winner === 'circle' && !isModalOpen) setIsModalOpen(true)
+  if (winner === 'cross' && !isModalOpen) {
+    setIsModalOpen(true)
+    setCountDraw(0)
+  }
+  if (winner === 'circle' && !isModalOpen) {
+    setIsModalOpen(true)
+    setCountDraw(0)
+
+  }
   if (countDraw === 9 || countDraw === 10) {
     setIsModalOpen(true)
     setCountDraw(0)
